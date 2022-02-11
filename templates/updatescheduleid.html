@@ -1,0 +1,188 @@
+{% extends "mainbase.html" %}
+
+
+{% block maincontent %}
+
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <br/>
+      <div class="jumbotron">
+        <h2 class="display-4">Insert Schedule</h2>
+        <p class="lead">Select the number of the week and the schedule you will work on.</p>
+
+        <hr>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                 <div class="alert alert-{{ category }}" role="alert"> {{ message }}</div>
+                 <hr>
+              {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('updateschedulePOST', id=id)}}" method="POST">
+
+
+
+            <div class="form-group">
+            <label>Select year</label>
+            <div class="col-sm-3">
+                        <select class="form-control" type="year" name="year" placeholder="Metai" disabled>
+                        {% if data.year == 2020 %}
+                          <option selected>2020</option>
+                        {% else %}
+                          <option>2020</option>
+                        {% endif %}
+                        {% if data.year == 2021 %}
+                          <option selected>2021</option>
+                        {% else %}
+                          <option>2021</option>
+                        {% endif %}
+                        {% if data.year == 2022 %}
+                          <option selected>2022</option>
+                        {% else %}
+                          <option>2022</option>
+                        {% endif %}
+
+                        </select>
+            </div>
+            </div>
+
+            <div class="form-group">
+            <label>Select month</label>
+            <div class="col-sm-3">
+                        <select class="form-control" type="month" name="month" disabled>
+                        {% if data.month == 1 %}
+                          <option selected>1</option>
+                        {% else %}
+                          <option>1</option>
+                        {% endif %}
+                        {% if data.month == 2 %}
+                          <option selected>2</option>
+                        {% else %}
+                          <option>2</option>
+                        {% endif %}
+                        {% if data.month == 3 %}
+                          <option selected>3</option>
+                        {% else %}
+                          <option>3</option>
+                        {% endif %}
+                        {% if data.month == 4 %}
+                          <option selected>4</option>
+                        {% else %}
+                          <option>4</option>
+                        {% endif %}
+                        {% if data.month == 5 %}
+                          <option selected>5</option>
+                        {% else %}
+                          <option>5</option>
+                        {% endif %}
+                        {% if data.month == 6 %}
+                          <option selected>6</option>
+                        {% else %}
+                          <option>6</option>
+                        {% endif %}
+                        {% if data.month == 7 %}
+                          <option selected>7</option>
+                        {% else %}
+                          <option>7</option>
+                        {% endif %}
+                        {% if data.month == 8 %}
+                          <option selected>8</option>
+                        {% else %}
+                          <option>8</option>
+                        {% endif %}
+                        {% if data.month == 9 %}
+                          <option selected>9</option>
+                        {% else %}
+                          <option>9</option>
+                        {% endif %}
+                        {% if data.month == 10 %}
+                          <option selected>10</option>
+                        {% else %}
+                          <option>10</option>
+                        {% endif %}
+                        {% if data.month == 11 %}
+                          <option selected>11</option>
+                        {% else %}
+                          <option>11</option>
+                        {% endif %}
+                        {% if data.month == 12 %}
+                          <option selected>12</option>
+                        {% else %}
+                          <option>12</option>
+                        {% endif %}
+                        </select>
+            </div>
+            </div>
+
+
+
+
+
+
+            <div class="form-group">
+            <label>Select working hours(Mon-Fri)</label>
+            <div class="col-sm-3">
+                        <select class="form-control" type="time" name="time">
+                        {% if data.shift == '7:00 - 12:00' %}
+                          <option selected>7:00 - 12:00</option>
+                        {% else %}
+                          <option>7:00 - 12:00</option>
+                        {% endif %}
+                        {% if data.shift == '8:00 - 13:00' %}
+                          <option selected>8:00 - 13:00</option>
+                        {% else %}
+                          <option>8:00 - 13:00</option>
+                        {% endif %}
+                        {% if data.shift == '9:00 - 14:00' %}
+                          <option selected>9:00 - 14:00</option>
+                        {% else %}
+                          <option>9:00 - 14:00</option>
+                        {% endif %}
+                        {% if data.shift == '10:00 - 15:00' %}
+                          <option selected>10:00 - 15:00</option>
+                        {% else %}
+                          <option>10:00 - 15:00</option>
+                        {% endif %}
+                        {% if data.shift == '11:00 - 16:00' %}
+                          <option selected>11:00 - 16:00</option>
+                        {% else %}
+                          <option>11:00 - 16:00</option>
+                        {% endif %}
+                        {% if data.shift == '12:00 - 17:00' %}
+                          <option selected>12:00 - 17:00</option>
+                        {% else %}
+                          <option>12:00 - 17:00</option>
+                        {% endif %}
+                        {% if data.shift == '13:00 - 18:00' %}
+                          <option selected>13:00 - 18:00</option>
+                        {% else %}
+                          <option>13:00 - 18:00</option>
+                        {% endif %}
+                        {% if data.shift == '14:00 - 19:00' %}
+                          <option selected>14:00 - 19:00</option>
+                        {% else %}
+                          <option>14:00 - 19:00</option>
+                        {% endif %}
+          
+                        </select>
+            </div>
+            </div>
+        
+            <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                    
+
+
+
+
+
+
+        </form>
+     </div>
+
+          
+    </div>
+
+{% endblock %}
+

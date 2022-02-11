@@ -1,0 +1,69 @@
+{% extends "mainbase.html" %}
+
+
+{% block maincontent %}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<h2 class="display-4">Register visit</h2>
+		<br>
+		<h4 class="display-4">Please, select Visit Time</h4>
+          
+			<hr>
+	        {% with messages = get_flashed_messages(with_categories=true) %}
+	              {% if messages %}
+	                {% for category, message in messages %}
+	                   <div class="alert alert-{{ category }}" role="alert"> {{ message }}</div>
+	                   <hr>
+	                {% endfor %}
+	              {% endif %}
+	          {% endwith %}
+
+          	<table id="example2" class="table table-bordered table-hover">
+                <thead>
+	                <tr>
+	                  <th>Date</th>
+	                  <th>Time</th>
+	                  <th>Select</th>
+
+	                </tr>
+                </thead>
+                <tbody>
+
+		            {%for row in range(1,(rows)| length)%} 
+			    		<tr>
+				        	<td>{{ rows[row].date }}</td>
+				        	<td>{{ rows[row].time }}</td>
+				        	<th>
+				        		<a href="{{ url_for('createvisit', eid=eid, pid=pid, date=rows[row].date, time = rows[row].time) }}"><button type="button" class="btn btn-primary btn-sm m-1" data-toggle="modal" data-target="">Select</button>
+				        	</th>
+			    		</tr>
+		    		{% endfor %}
+	    		</tbody>
+	    		<tfoot>
+	    			<tr>
+	                  <th>Date</th>
+	                  <th>Time</th>
+	                  <th>Select</th>
+	                </tr>
+	           	</tfoot>
+    		</table>
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% endblock %}
+

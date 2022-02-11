@@ -1,0 +1,62 @@
+{% extends "mainbase.html" %}
+
+
+{% block maincontent %}
+<div class="container">
+
+  <form action="{{ url_for('createpatient')}}" method="POST">
+  	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	    <h2 class="form-signin-heading">Create a new booklet</h2>
+
+			<hr>
+			{% with messages = get_flashed_messages(with_categories=true) %}
+	      		{% if messages %}
+	        		{% for category, message in messages %}
+		        	   <div class="alert alert-{{ category }}" role="alert"> {{ message }}</div>
+		        	   <hr>
+	        		{% endfor %}
+	      		{% endif %}
+	    	{% endwith %}
+	    	
+	    	<div class="col-sm-4">
+	    	<div class="form-group">
+            <label>First Name</label>
+            <input type="patientname" name="fname" class="form-control" placeholder="First Name" value={{data.fname}}>
+            <label>Last Name</label>
+            <input type="patientname" name="lname" class="form-control" placeholder="Last Name" value={{data.lname}}>
+            <label>Personal Number</label>
+            <input type="personalnumber" name="pn" class="form-control" placeholder="00000000000" value={{data.pn}}>
+            <label>Gender</label>
+            <select class="form-control" type="gender" name="gender" placeholder="Gender">
+
+            			{% if data.gender == 'Male' %}
+                        	<option selected>Male</option>
+                        {% else %}
+                        	<option>Male</option>
+                        {% endif %}
+                        {% if data.gender == 'Female' %}
+                        	<option selected>Female</option>
+                        {% else %}
+                        	<option>Female</option>
+                        {% endif %}
+            </select>
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" placeholder="email@email.com" value={{data.email}}>
+            <label>Phone number</label>
+            <input type="phone" name="phone" class="form-control" placeholder="37060000000" value={{data.phone}}>
+            
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary">Save</button>
+            </div>
+			
+		<!-- <div class="col-md-3"> -->
+	    	
+	    	</div>
+	    <!-- </div> -->
+	</div>
+  </form>
+
+</div> <!-- /container -->
+
+
+{% endblock %}

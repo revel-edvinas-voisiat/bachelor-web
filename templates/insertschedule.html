@@ -1,0 +1,91 @@
+{% extends "mainbase.html" %}
+
+
+{% block maincontent %}
+
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <br/>
+      <div class="jumbotron">
+        <h2 class="display-4">Insert Schedule</h2>
+        <p class="lead">Select the year, month and the schedule you will work on.</p>
+        <hr class="my-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                 <div class="alert alert-{{ category }}" role="alert"> {{ message }}</div>
+                 <hr>
+              {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('insertschedule')}}" method="POST">
+
+            <div class="form-group">
+            <label>Select year</label>
+            <div class="col-sm-3">
+                        <select class="form-control" type="year" name="year" placeholder="Metai">
+                        <option>2020</option>
+                        <option>2021</option>
+                        <option>2022</option>
+
+                        </select>
+            </div>
+            </div>
+
+            <div class="form-group">
+            <label>Select month</label>
+            <div class="col-sm-3">
+                        <select class="form-control" type="month" name="month" placeholder="Savaite">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        </select>
+            </div>
+            </div>
+
+
+
+
+
+
+            <div class="form-group">
+            <label>Select working hours(Mon-Fri)</label>
+            <div class="col-sm-3">
+                        <select class="form-control" type="time" name="time" placeholder="Laikas">
+                          <option>7:00 - 12:00</option>
+                          <option>8:00 - 13:00</option>
+                          <option>9:00 - 14:00</option>
+                          <option>10:00 - 15:00</option>
+                          <option>11:00 - 16:00</option>
+                          <option>12:00 - 17:00</option>
+                          <option>13:00 - 18:00</option>
+                          <option>14:00 - 19:00</option>
+                        </select>
+            </div>
+            </div>
+        
+            <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                    
+
+
+
+
+
+
+        </form>
+     </div>
+
+          
+    </div>
+
+{% endblock %}
+

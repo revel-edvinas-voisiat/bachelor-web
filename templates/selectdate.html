@@ -1,0 +1,26 @@
+{% extends "mainbase.html" %}
+
+
+{% block maincontent %}
+<div class="container">
+
+  <form action="{{ url_for('selectdate')}}" method="POST">
+  	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	    <h2 class="form-signin-heading">Select visit date</h2>
+
+            <label>Select date</label>
+            <br>
+            <input type="date" id="date" name="date" min={{datefrom}} max={{dateto}}>
+            <br>
+            <br>
+            <a href="{{ url_for('selectdatePOST', eid=eid, pid=pid)}}"><button type="button" class="btn btn-primary btn-sm m-1" data-toggle="modal" data-target="">Select</button>
+			
+		<!-- <div class="col-md-3"> -->
+	    	
+	</div>
+  </form>
+
+</div> <!-- /container -->
+
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "mainbase.html" %}
+
+
+{% block maincontent %}
+<div class="container">
+
+  <form action="{{ url_for('createvisitPOST', eid=eid, pid=pid, date=date, time=time, patient=patient, employee=employee)}}" method="POST">
+  	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	    <h2 class="form-signin-heading">Create a new visit</h2>
+
+			<hr>
+			{% with messages = get_flashed_messages(with_categories=true) %}
+	      		{% if messages %}
+	        		{% for category, message in messages %}
+		        	   <div class="alert alert-{{ category }}" role="alert"> {{ message }}</div>
+		        	   <hr>
+	        		{% endfor %}
+	      		{% endif %}
+	    	{% endwith %}
+	    	
+	    	<div class="col-sm-4">
+	    	<div class="form-group">
+            <label>Selected patient</label>        
+            <br>
+            <input type="test" name="patient" class="form-control" disabled="disabled" value="{{patient}}">
+            <br>
+            <br>
+            <label>Selected employee</label>
+            <br>
+            <input type="text" name="employee" class="form-control" disabled="disabled" value="{{employee}}">
+            <br>
+            <br>
+            <label>Selected time</label>
+            <br>
+            <input type="text" name="time" class="form-control" disabled="disabled" value="{{date}} {{time}}">
+            <br>
+            <br>
+            <label>Remotely?</label>
+            <input type="checkbox" class="form-check-input" id="remotely" name="remotely">
+            <br>
+            <br>            
+            <button type="submit" class="btn btn-primary btn-sm m-1" data-toggle="modal" data-target="">Register</button>
+            </div>
+			
+		<!-- <div class="col-md-3"> -->
+	    	
+	    	</div>
+	    <!-- </div> -->
+	</div>
+  </form>
+
+</div> <!-- /container -->
+
+
+{% endblock %}

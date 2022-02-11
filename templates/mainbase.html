@@ -1,0 +1,127 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Voisiat Clinic
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='dataTables.bootstrap4.css')}}">
+<style>
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<!-- DataTables -->
+<script src="{{url_for('.static', filename='jquery.dataTables.js')}}"></script>
+<script src="{{url_for('.static', filename='dataTables.bootstrap4.js')}}"></script>
+<script>
+  $(function () {
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ url_for('dashboard') }}">Voisiat Clinic</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a>PATIENT MANAGEMENT<span class="sr-only">(current)</span></a></li>
+            <li><a href="{{ url_for('createpatient') }}">Register Patient</a></li>
+            <li><a href="{{ url_for('bookletlist') }}">Patients</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li class="active"><a>VISIT MANAGEMENT<span class="sr-only">(current)</span></a></li>
+            <li><a href="{{ url_for('mytodayvisits') }}">My Today Visits</a></li>
+            <li><a href="{{ url_for('selectpatient') }}">Create Visit</a></li>
+            <li><a href="{{ url_for('allvisits') }}"> All Visits</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li class="active"><a>SCHEDULE MANAGEMENT<span class="sr-only">(current)</span></a></li>
+            <li><a href="{{ url_for('insertschedule') }}">Insert Schedule</a></li>
+            <li><a href="{{ url_for('updateschedule') }}">Schedules</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li class="active"><a>EMPLOYEE MANAGEMENT<span class="sr-only">(current)</span></a></li>
+            <li><a href="{{ url_for('signup') }}">Register Employee</a></li>
+            <li><a href="{{ url_for('updateemployee') }}">Employees</a></li>
+          </ul>
+        </div>
+
+
+{% block maincontent %}{% endblock %}
+
+
+
+{% endblock %}
+
+{% block scripts %}
+
+
+{% endblock %}

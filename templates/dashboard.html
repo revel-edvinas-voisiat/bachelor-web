@@ -1,0 +1,27 @@
+{% extends "mainbase.html" %}
+
+
+{% block maincontent %}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h2 class="page-header">Hello, {{ name }}</h2>
+
+            
+            <div class="col-xs-10 col-sm-10">
+              <hr>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                     <div class="alert alert-{{ category }}" role="alert"> {{ message }}</div>
+                     <hr>
+                  {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+              <h3>Welcome to Voisiat Clinic internal staff system, to continue management use the toolbar on the left hand side</h3>
+            </div>
+
+          
+          
+              
+
+    {% endblock %}

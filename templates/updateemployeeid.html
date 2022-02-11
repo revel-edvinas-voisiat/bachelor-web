@@ -1,0 +1,92 @@
+{% extends "mainbase.html" %}
+
+
+{% block maincontent %}
+<div class="container">
+
+
+  <form action="{{ url_for('updateemployeePOST', id=id)}}" method="POST">
+
+
+  	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	    <h2 class="form-signin-heading">Create a new employee</h2>
+
+			<hr>
+			{% with messages = get_flashed_messages(with_categories=true) %}
+	      		{% if messages %}
+	        		{% for category, message in messages %}
+		        	   <div class="alert alert-{{ category }}" role="alert"> {{ message }}</div>
+		        	   <hr>
+	        		{% endfor %}
+	      		{% endif %}
+	    	{% endwith %}
+	    	
+	    	<div class="col-md-6">
+	    		<label>First name</label>
+            	<input type="fname" name="fname" class="form-control" placeholder="First name" value={{data.fname}}>
+	    		<label>Last name</label>
+            	<input type="lname" name="lname" class="form-control" placeholder="Last name" value={{data.lname}}>
+			    <label>Password</label>
+            	<input type="password" name="password" class="form-control" placeholder="Password">
+            	<br>
+			   	<label>Type</label>
+            		<select class="form-control" type="types" name="types" placeholder="Gender" value={{data.type}}>
+                        {% if data.type == 'Otorhinolaryngologists' %}
+                        	<option selected>Otorhinolaryngologists</option>
+                        {% else %}
+                        	<option>Otorhinolaryngologists</option>
+                        {% endif %}
+                        
+                        {% if data.type == 'Ophthalmologist' %}
+                        	<option selected>Ophthalmologist</option>
+                        {% else %}
+                        	<option>Ophthalmologist</option>
+                        {% endif %}
+
+                        {% if data.type == 'Traumatologist' %}
+                        	<option selected>Traumatologist</option>
+                        {% else %}
+                        	<option>Traumatologist</option>
+                        {% endif %}
+                        
+                        {% if data.type == 'Dentist' %}
+                        	<option selected>Dentist</option>
+                        {% else %}
+                        	<option>Dentist</option>
+                        {% endif %}
+
+                        {% if data.type == 'Pulmonologist' %}
+                        	<option selected>Pulmonologist</option>
+                        {% else %}
+                        	<option>Pulmonologist</option>
+                        {% endif %}
+
+                        {% if data.type == 'Cardiologist' %}
+                            <option selected>Cardiologist</option>
+                        {% else %}
+                            <option>Cardiologist</option>
+                        {% endif %}
+                   	</select>
+                <br>
+                <label class="form-check-label" for="exampleCheck1">Admin</label>
+                {% if data.isadmin %}
+					<input type="checkbox" class="form-check-input" id="exampleCheck1" name="admin" checked>
+				{% else %}
+					<input type="checkbox" class="form-check-input" id="exampleCheck1" name="admin">
+				{% endif %}
+                <br>
+
+
+            
+			
+		<!-- <div class="col-md-3"> -->
+	    	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+	    	</div>
+	    <!-- </div> -->
+	</div>
+  </form>
+
+</div> <!-- /container -->
+
+
+{% endblock %}

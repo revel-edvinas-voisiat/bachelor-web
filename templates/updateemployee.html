@@ -1,0 +1,108 @@
+{% extends "mainbase.html" %}
+
+
+{% block maincontent %}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h2 class="display-4">Employee List</h2>
+			<hr>
+	        {% with messages = get_flashed_messages(with_categories=true) %}
+	              {% if messages %}
+	                {% for category, message in messages %}
+	                   <div class="alert alert-{{ category }}" role="alert"> {{ message }}</div>
+	                   <hr>
+	                {% endfor %}
+	              {% endif %}
+	          {% endwith %}
+
+          	<table id="example2" class="table table-bordered table-hover">
+                <thead>
+	                <tr>
+	                  <th>ID</th>
+	                  <th>First name</th>
+	                  <th>Last name</th>
+	                  <th>Email</th>
+	                  <th>Type</th>
+	                  <th>Active</th>
+	                  <th>Admin</th>
+	                  <th>Adjustments</th>
+
+	                </tr>
+                </thead>
+                <tbody>
+
+		            {%for row in range(1,(rows)| length)%} 
+			    		<tr>
+				        	<td>{{ rows[row].id }}</a></td>
+				        	<td>{{ rows[row].fname }}</td>
+				        	<td>{{ rows[row].lname }}</td>
+				        	<td>{{ rows[row].email }}</td>
+				        	<td>{{ rows[row].type }}</td>
+				        	<td>
+					        	{% if rows[row].active %}
+					        		<p>Yes</p>
+					        	{% else %}
+					        		<p>No</p>
+					        	{% endif %}
+				        	</td>
+				        	<td>
+					        	{% if rows[row].isadmin %}
+					        		<p>Yes</p>
+					        	{% else %}
+					        		<p>No</p>
+					        	{% endif %}
+				        	</td>
+				        	<th>
+				        		{% if admin %}
+				        		<a href="{{ url_for('updateemployeeredirect', id=rows[row].id) }}"><button type="button" class="btn btn-primary btn-sm m-1" data-toggle="modal" data-target="">Details</button>
+				        		{% endif %}
+
+				        		<a href="{{ url_for('employeevisits', id=rows[row].id) }}"><button type="button" class="btn btn-primary btn-sm m-1" data-toggle="modal" data-target="">Visits</button>
+
+				        		{% if admin %}
+					        		{% if rows[row].active %}
+									     <a href="{{ url_for('deactivateemployeePOST', id=rows[row].id) }}"><button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="" onclick="return confirm('Are you sure you want to deactivate this employee?')">Deactivate</button>
+									{% else %}
+									     <a href="{{ url_for('activateemployeePOST', id=rows[row].id) }}"><button type="button" class="btn btn-success btn-sm m-1" data-toggle="modal" data-target="" onclick="return confirm('Are you sure you want to activate this user?')">Activate</button>
+									{% endif %}
+								{% endif %}
+				        		
+
+				        		
+				        	</th>
+			    		</tr>
+		    		{% endfor %}
+	    		</tbody>
+	    		<tfoot>
+	    			<tr>
+	                  <th>ID</th>
+	                  <th>First name</th>
+	                  <th>Last name</th>
+	                  <th>Email</th>
+	                  <th>Type</th>
+	                  <th>Active</th>
+	                  <th>Admin</th>
+	                  <th>Adjustments</th>
+	                </tr>
+	           	</tfoot>
+    		</table>
+              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% endblock %}
+
